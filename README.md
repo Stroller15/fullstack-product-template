@@ -16,6 +16,9 @@ A production-ready Turborepo monorepo template.
 | Monitoring | Sentry + PostHog |
 | CI/CD | GitHub Actions → Vercel (web) + Railway (api) |
 
+<img width="769" height="1051" alt="Screenshot 2026-03-23 at 12 16 12 AM" src="https://github.com/user-attachments/assets/519e0693-932a-4590-8132-2721473e0f78" />
+
+
 ## Structure
 
 ```
