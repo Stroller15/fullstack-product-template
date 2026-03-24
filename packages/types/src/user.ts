@@ -1,6 +1,6 @@
 export interface User {
   id: string;
-  clerkId: string;
+  providerId: string;
   email: string;
   name: string | null;
   createdAt: Date;

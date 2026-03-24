@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 const envSchema = z.object({
-  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
   NEXT_PUBLIC_API_URL: z.string().url().default("http://localhost:3001"),
   NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
   NEXT_PUBLIC_POSTHOG_HOST: z.string().url().default("https://app.posthog.com"),
@@ -9,7 +8,6 @@ const envSchema = z.object({
 });
 
 const parsed = envSchema.safeParse({
-  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env["NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"],
   NEXT_PUBLIC_API_URL: process.env["NEXT_PUBLIC_API_URL"],
   NEXT_PUBLIC_POSTHOG_KEY: process.env["NEXT_PUBLIC_POSTHOG_KEY"],
   NEXT_PUBLIC_POSTHOG_HOST: process.env["NEXT_PUBLIC_POSTHOG_HOST"],

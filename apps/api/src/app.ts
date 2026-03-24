@@ -3,7 +3,6 @@ import helmet from "helmet";
 import cors from "cors";
 import { rateLimit } from "express-rate-limit";
 import * as Sentry from "@sentry/node";
-import { clerkAuth } from "./middleware/auth";
 import { errorHandler, notFoundHandler } from "./middleware/error";
 import { router } from "./routes";
 import { env } from "./lib/env";
@@ -39,9 +38,6 @@ export function createApp() {
   // Body parsing
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-
-  // Clerk auth (verifies JWT and attaches auth to req)
-  app.use(clerkAuth);
 
   // Routes
   app.use("/api/v1", router);

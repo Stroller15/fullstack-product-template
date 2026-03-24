@@ -8,9 +8,8 @@ const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   DIRECT_URL: z.string().url(),
 
-  // Clerk
-  CLERK_SECRET_KEY: z.string().min(1),
-  CLERK_PUBLISHABLE_KEY: z.string().min(1),
+  // NextAuth
+  NEXTAUTH_SECRET: z.string().min(1),
 
   // Redis (Upstash)
   REDIS_URL: z.string().url(),

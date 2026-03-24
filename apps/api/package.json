@@ -16,7 +16,7 @@
     "@my-app/db": "workspace:*",
     "@my-app/types": "workspace:*",
     "@my-app/validators": "workspace:*",
-    "@clerk/express": "^1.3.13",
+    "jose": "^5.10.0",
     "@sentry/node": "^8.47.0",
     "bullmq": "^5.34.8",
     "cors": "^2.8.5",

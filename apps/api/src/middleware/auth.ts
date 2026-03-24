@@ -1,15 +1,37 @@
 import type { Request, Response, NextFunction } from "express";
-import { clerkMiddleware, getAuth } from "@clerk/express";
+import { jwtVerify } from "jose";
+import { env } from "../lib/env";
 
-export const clerkAuth = clerkMiddleware();
+const secret = new TextEncoder().encode(env.NEXTAUTH_SECRET);
 
-export function requireAuth(req: Request, res: Response, next: NextFunction): void {
-  const { userId } = getAuth(req);
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Express {
+    interface Request {
+      auth?: {
+        sub: string;
+        email: string;
+      };
+    }
+  }
+}
 
-  if (!userId) {
+export async function requireAuth(req: Request, res: Response, next: NextFunction): Promise<void> {
+  const authHeader = req.headers.authorization;
+  if (!authHeader?.startsWith("Bearer ")) {
     res.status(401).json({ message: "Unauthorized" });
     return;
   }
 
-  next();
+  const token = authHeader.slice(7);
+  try {
+    const { payload } = await jwtVerify(token, secret);
+    req.auth = {
+      sub: payload.sub as string,
+      email: payload.email as string,
+    };
+    next();
+  } catch {
+    res.status(401).json({ message: "Unauthorized" });
+  }
 }

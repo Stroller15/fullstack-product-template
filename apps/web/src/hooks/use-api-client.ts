@@ -1,23 +1,22 @@
 "use client";
 
-import { useAuth } from "@clerk/nextjs";
+import { useSession } from "next-auth/react";
 import { useMemo } from "react";
 import { apiClient } from "@/lib/api";
 
 export function useApiClient() {
-  const { getToken } = useAuth();
+  const { data: session } = useSession();
 
   return useMemo(() => {
     const client = apiClient;
 
-    client.interceptors.request.use(async (config) => {
-      const token = await getToken();
-      if (token) {
-        config.headers["Authorization"] = `Bearer ${token}`;
+    client.interceptors.request.use((config) => {
+      if (session?.accessToken) {
+        config.headers["Authorization"] = `Bearer ${session.accessToken}`;
       }
       return config;
     });
 
     return client;
-  }, [getToken]);
+  }, [session?.accessToken]);
 }

@@ -17,7 +17,8 @@
   "dependencies": {
     "@my-app/types": "workspace:*",
     "@my-app/validators": "workspace:*",
-    "@clerk/nextjs": "^6.9.9",
+    "next-auth": "^4.24.11",
+    "jose": "^5.10.0",
     "@sentry/nextjs": "^8.47.0",
     "@tanstack/react-query": "^5.64.2",
     "@tanstack/react-query-devtools": "^5.64.2",
