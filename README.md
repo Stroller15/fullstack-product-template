@@ -4,20 +4,19 @@ A production-ready Turborepo monorepo template.
 
 ## Stack
 
-| Layer | Tech |
-|---|---|
-| Frontend | Next.js 15 (App Router), TypeScript, Tailwind CSS, shadcn/ui |
-| Backend | Express, TypeScript, Clerk auth, BullMQ |
-| Database | Prisma + PostgreSQL (Supabase) |
-| Auth | Clerk |
-| State | React Query (server) + Zustand (client) |
-| Forms | React Hook Form + Zod |
-| Jobs | BullMQ + Redis (Upstash) |
-| Monitoring | Sentry + PostHog |
-| CI/CD | GitHub Actions → Vercel (web) + Railway (api) |
+| Layer      | Tech                                                         |
+| ---------- | ------------------------------------------------------------ |
+| Frontend   | Next.js 15 (App Router), TypeScript, Tailwind CSS, shadcn/ui |
+| Backend    | Express, TypeScript, BullMQ                                  |
+| Database   | Prisma + PostgreSQL (Supabase)                               |
+| Auth       | NextAuth                                                     |
+| State      | React Query (server) + Zustand (client)                      |
+| Forms      | React Hook Form + Zod                                        |
+| Jobs       | BullMQ + Redis (Upstash)                                     |
+| Monitoring | Sentry + PostHog                                             |
+| CI/CD      | GitHub Actions → Vercel (web) + Railway (api)                |
 
 <img width="769" height="1051" alt="Screenshot 2026-03-23 at 12 16 12 AM" src="https://github.com/user-attachments/assets/519e0693-932a-4590-8132-2721473e0f78" />
-
 
 ## Structure
 
@@ -36,6 +35,7 @@ my-app/
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js ≥ 20
 - pnpm ≥ 9
 
@@ -88,15 +88,15 @@ pnpm dev
 
 ## Commands
 
-| Command | Description |
-|---|---|
-| `pnpm dev` | Start all apps in dev mode |
-| `pnpm build` | Build all apps |
-| `pnpm lint` | Lint all packages |
-| `pnpm type-check` | Type-check all packages |
-| `pnpm test` | Run all unit tests |
-| `pnpm --filter @my-app/web test:e2e` | Run Playwright E2E tests |
-| `pnpm --filter @my-app/db db:studio` | Open Prisma Studio |
+| Command                              | Description                |
+| ------------------------------------ | -------------------------- |
+| `pnpm dev`                           | Start all apps in dev mode |
+| `pnpm build`                         | Build all apps             |
+| `pnpm lint`                          | Lint all packages          |
+| `pnpm type-check`                    | Type-check all packages    |
+| `pnpm test`                          | Run all unit tests         |
+| `pnpm --filter @my-app/web test:e2e` | Run Playwright E2E tests   |
+| `pnpm --filter @my-app/db db:studio` | Open Prisma Studio         |
 
 ## Key conventions
 
@@ -108,9 +108,11 @@ pnpm dev
 ## Deployment
 
 ### Web → Vercel
+
 Link your repo to a Vercel project and set env vars from `apps/web/.env.example`.
 
 ### API → Railway
+
 The `apps/api/Dockerfile` is used. Set env vars from `apps/api/.env.example` in Railway dashboard.
 
 ### Required GitHub secrets
@@ -120,5 +122,5 @@ VERCEL_TOKEN
 RAILWAY_TOKEN
 DATABASE_URL
 DIRECT_URL
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+NEXTAUTH_SECRET
 ```
